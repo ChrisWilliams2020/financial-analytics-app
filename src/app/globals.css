@@ -1,0 +1,232 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-financial;
+  }
+}
+
+@layer components {
+  /* Voice Command Indicator */
+  .voice-active {
+    @apply relative;
+  }
+  
+  .voice-active::after {
+    content: '';
+    @apply absolute -inset-1 bg-blue-500 rounded-full animate-voice-pulse opacity-30;
+  }
+
+  /* Financial Data Grid */
+  .financial-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4;
+  }
+
+  /* AI Avatar Container */
+  .avatar-container {
+    @apply relative overflow-hidden rounded-lg bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20;
+  }
+  
+  .avatar-speaking {
+    @apply animate-avatar-speak;
+  }
+
+  /* Market Data Cards */
+  .market-card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-4 hover:shadow-xl transition-shadow duration-200;
+  }
+
+  .market-card.positive {
+    @apply border-l-4 border-l-green-500;
+  }
+  
+  .market-card.negative {
+    @apply border-l-4 border-l-red-500;
+  }
+
+  /* Data Flow Animation */
+  .data-stream {
+    @apply relative overflow-hidden;
+  }
+  
+  .data-stream::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-data-flow;
+  }
+
+  /* Voice Command Button */
+  .voice-button {
+    @apply relative inline-flex items-center justify-center rounded-full bg-blue-600 text-white p-4 hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+
+  .voice-button.listening {
+    @apply bg-red-600 hover:bg-red-700 animate-voice-pulse;
+  }
+
+  /* QR Scanner Overlay */
+  .qr-scanner-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center;
+  }
+
+  .qr-scanner-frame {
+    @apply relative w-80 h-80 border-2 border-white rounded-lg overflow-hidden;
+  }
+
+  .qr-scanner-corners {
+    @apply absolute inset-0 pointer-events-none;
+  }
+
+  .qr-scanner-corners::before,
+  .qr-scanner-corners::after {
+    content: '';
+    @apply absolute w-6 h-6 border-white;
+  }
+
+  .qr-scanner-corners::before {
+    @apply top-4 left-4 border-t-4 border-l-4;
+  }
+
+  .qr-scanner-corners::after {
+    @apply bottom-4 right-4 border-b-4 border-r-4;
+  }
+
+  /* Predictive Analytics Charts */
+  .prediction-chart {
+    @apply relative bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg p-4;
+  }
+
+  /* Cross-Domain Correlation Indicators */
+  .correlation-strong {
+    @apply text-green-600 font-semibold;
+  }
+  
+  .correlation-moderate {
+    @apply text-yellow-600 font-medium;
+  }
+  
+  .correlation-weak {
+    @apply text-red-600;
+  }
+
+  /* SEC Filing Alert Badge */
+  .sec-alert {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .sec-alert.high {
+    @apply bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300;
+  }
+  
+  .sec-alert.medium {
+    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300;
+  }
+  
+  .sec-alert.low {
+    @apply bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300;
+  }
+
+  /* Mobile-First Responsive Utilities */
+  .mobile-only {
+    @apply block md:hidden;
+  }
+  
+  .desktop-only {
+    @apply hidden md:block;
+  }
+  
+  .mobile-grid {
+    @apply grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3;
+  }
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E0 #F7FAFC;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #F7FAFC;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #CBD5E0;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #A0AEC0;
+}
+
+/* Loading Skeleton */
+.skeleton {
+  @apply animate-pulse bg-gray-200 dark:bg-gray-700 rounded;
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-break {
+    page-break-before: always;
+  }
+}

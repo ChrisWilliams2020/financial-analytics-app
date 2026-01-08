@@ -1,0 +1,77 @@
+// Prisma schema for MedPact Financial Analytics
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  password      String
+  role          String    @default("user")
+  organizationId String?
+  organization  Organization? @relation(fields: [organizationId], references: [id])
+  sessions      Session[]
+  accounts      Account[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  lastLogin     DateTime?
+  isActive      Boolean   @default(true)
+  emailVerified DateTime?
+  @@index([email])
+  @@map("users")
+}
+
+model Organization {
+  id                String   @id @default(cuid())
+  name              String
+  subscriptionTier  String   @default("trial")
+  subscriptionStatus String  @default("active")
+  maxUsers          Int      @default(5)
+  users             User[]
+  createdAt         DateTime @default(now())
+  stripeCustomerId  String?  @unique
+  stripeSubscriptionId String? @unique
+  currentPeriodEnd DateTime?
+  @@map("organizations")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@map("sessions")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
