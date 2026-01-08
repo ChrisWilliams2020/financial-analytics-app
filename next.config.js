@@ -13,15 +13,8 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   
-  env: {
-    MEDPACT_API_URL: process.env.MEDPACT_API_URL || 'https://api.medpact.com',
-    MEDPACT_FINANCIAL_API_URL: process.env.MEDPACT_FINANCIAL_API_URL || 'https://financial-api.medpact.com',
-    SEC_EDGAR_API_URL: process.env.SEC_EDGAR_API_URL || 'https://data.sec.gov/submissions',
-    TRADINGVIEW_API_KEY: process.env.TRADINGVIEW_API_KEY,
-    POLYGON_API_KEY: process.env.POLYGON_API_KEY,
-    AZURE_SPEECH_KEY: process.env.AZURE_SPEECH_KEY,
-    AZURE_SPEECH_REGION: process.env.AZURE_SPEECH_REGION
-  },
+  // Remove env section to avoid warnings about missing values
+  // Environment variables should be set in Vercel dashboard or .env files
   
   async headers() {
     return [
