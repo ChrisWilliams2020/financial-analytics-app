@@ -1,7 +1,7 @@
 'use client';
 
 import AdvancedAnalytics from './components/AdvancedAnalytics';
-import { TrendingUp, DollarSign, Shield, Zap, Brain, FileText, Database, CheckCircle } from 'lucide-react';
+import { TrendingUp, DollarSign, Shield, Zap, Brain, FileText, Database, CheckCircle, Upload, BarChart3 } from 'lucide-react';
 
 export default function HomePage() {
   return (
@@ -160,18 +160,27 @@ export default function HomePage() {
           <p className="text-blue-100 mb-8">
             Upload your first file and discover underpayments in minutes
           </p>
-          <div className="flex justify-center space-x-4">
+          <div className="flex justify-center flex-wrap gap-4">
             <a
-              href="#upload"
-              className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+              href="/ai-upload"
+              className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all hover:scale-105 shadow-lg flex items-center space-x-2"
             >
-              Get Started Free
+              <Upload className="h-5 w-5" />
+              <span>AI File Upload</span>
             </a>
             <a
-              href="#demo"
-              className="bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors"
+              href="/analytics"
+              className="bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-800 transition-all hover:scale-105 shadow-lg flex items-center space-x-2"
             >
-              Watch Demo
+              <TrendingUp className="h-5 w-5" />
+              <span>Analytics</span>
+            </a>
+            <a
+              href="/dashboard"
+              className="bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold hover:bg-purple-800 transition-all hover:scale-105 shadow-lg flex items-center space-x-2"
+            >
+              <BarChart3 className="h-5 w-5" />
+              <span>Dashboard</span>
             </a>
           </div>
         </div>
