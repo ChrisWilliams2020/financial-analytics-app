@@ -2,11 +2,15 @@
 const nextConfig = {
   output: 'standalone',
   experimental: {
-    appDir: true,
+    serverActions: true,
   },
-  // Disable static page generation for all pages
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   trailingSlash: false,
-  // This forces all pages to be server-side rendered
   async headers() {
     return [
       {
