@@ -3,13 +3,22 @@ const nextConfig = {
   output: 'standalone',
   experimental: {
     appDir: true,
-    serverActions: true,
   },
-  typescript: {
-    ignoreBuildErrors: false,
-  },
-  eslint: {
-    ignoreDuringBuilds: false,
+  // Disable static page generation for all pages
+  trailingSlash: false,
+  // This forces all pages to be server-side rendered
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store, must-revalidate',
+          },
+        ],
+      },
+    ]
   },
 }
 
